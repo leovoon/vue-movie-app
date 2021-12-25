@@ -7,7 +7,7 @@
       <a
         class="icon-btn"
         rel="noreferrer"
-        href="https://github.com/leovoon"
+        href="https://github.com/leovoon/vue-movie-app"
         target="_blank"
         title="GitHub"
         style="margin: 4px; color: white;"
