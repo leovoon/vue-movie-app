@@ -1,6 +1,6 @@
 <template>
   <DarkToggle />
-  <MessageToggle/>
+  <MessageToggle />
   <main p-4>
     <router-view />
   </main>

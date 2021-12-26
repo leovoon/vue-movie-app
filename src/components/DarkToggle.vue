@@ -1,5 +1,5 @@
 <template>
-  <t-button theme="default" variant="text" @click="toggleDark()">
+  <t-button theme="default" size="large" variant="text" @click="toggleDark()">
     <div v-if="isDark" class="toggle">
       <t-icon name="star-filled" />
     </div>

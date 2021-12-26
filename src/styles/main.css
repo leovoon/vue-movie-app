@@ -13,3 +13,7 @@ html {
 html[theme-mode="dark"] {
   background: #121212;
 }
+
+a {
+  text-decoration: none;
+}

@@ -4,18 +4,19 @@
     <t-divider align="center" dashed>
       Made with 💙 by leovoon
 
-      <a
-        class="icon-btn"
+      <t-button
         rel="noreferrer"
+        theme="default"
+        size="medium"
+        variant="text"
         href="https://github.com/leovoon/vue-movie-app"
         target="_blank"
-        title="GitHub"
-        style="margin: 4px; color: white;"
       >
         <t-icon
+          size="medium"
           name="logo-github"
         />
-      </a>
+      </t-button>
     </t-divider>
   </nav>
 </template>

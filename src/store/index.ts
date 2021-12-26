@@ -38,6 +38,9 @@ export const useMovie = defineStore('movieStore', {
 
     }
   },
+  getters: {
+    movieUrl: () => (imdbID: string) => `https://www.imdb.com/title/${imdbID}`,
+  },
   actions: {
     async setInTheaters() {
       this.inTheatersData.isLoading = true
@@ -76,6 +79,5 @@ export const useMovie = defineStore('movieStore', {
       this.boxOfficeData.isLoading = false
     },
   },
-  getters: {},
 
 })

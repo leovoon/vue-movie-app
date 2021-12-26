@@ -8,30 +8,33 @@
         <t-loading :loading="inTheatersData.isLoading" fullscreen />
         <template v-if="inTheatersData.movies && inTheatersData.movies.items.length > 0">
           <t-list-item v-for="movie in inTheatersData.movies?.items" :key="movie.id" class="list-item">
-            <t-list-item-meta :image="movie.image" :title="movie.fullTitle" :description="movie.plot">
-              <template #description>
-                <p>
-                  <t-tag theme="primary" style="font-size: small;">
-                    {{ movie.releaseState }}
-                  </t-tag>
-                </p>
-                <p>{{ movie.plot }}</p>
-                <p>
-                  <t-tag style="font-size: small; margin-right: 6px;">
-                    <template #icon>
-                      <t-icon name="discount" />
-                    </template>
-                    {{ movie.genres }}
-                  </t-tag>
-                  <t-tag style="font-size: small; margin-right: 6px;">
-                    <template #icon>
-                      <t-icon name="time" />
-                    </template>
-                    {{ movie.runtimeStr }}
-                  </t-tag>
-                </p>
-              </template>
-            </t-list-item-meta>
+            <a :href="movieStore.movieUrl(movie.id)">
+
+              <t-list-item-meta :image="movie.image" :title="movie.fullTitle" :description="movie.plot">
+                <template #description>
+                  <p>
+                    <t-tag theme="primary" style="font-size: small;">
+                      {{ movie.releaseState }}
+                    </t-tag>
+                  </p>
+                  <p>{{ movie.plot }}</p>
+                  <p>
+                    <t-tag style="font-size: small; margin-right: 6px;">
+                      <template #icon>
+                        <t-icon name="discount" />
+                      </template>
+                      {{ movie.genres }}
+                    </t-tag>
+                    <t-tag style="font-size: small; margin-right: 6px;">
+                      <template #icon>
+                        <t-icon name="time" />
+                      </template>
+                      {{ movie.runtimeStr }}
+                    </t-tag>
+                  </p>
+                </template>
+              </t-list-item-meta>
+            </a>
           </t-list-item>
         </template>
         <template v-else>
@@ -47,34 +50,36 @@
         <t-loading :loading="comingSoonData.isLoading" fullscreen />
         <template v-if="comingSoonData.movies && comingSoonData.movies.items.length > 0">
           <t-list-item v-for="movie in comingSoonData.movies?.items" :key="movie.id" class="list-item">
-            <t-list-item-meta :image="movie.image" :title="movie.fullTitle">
-              <template #description>
-                <p>
-                  <t-tag theme="warning" style="font-size: small;">
-                    Release Date:  {{ movie.releaseState }}
-                  </t-tag>
-                </p>
-                <p>{{ movie.plot }}</p>
-                <p>
-                  <t-tag style="font-size: small; margin-right: 6px;">
-                    <template #icon>
-                      <t-icon name="discount" />
-                    </template>
-                    {{ movie.genres }}
-                  </t-tag>
-                  <t-tag style="font-size: small; margin-right: 6px;">
-                    <template #icon>
-                      <t-icon name="time" />
-                    </template>
-                    {{ movie.runtimeStr }}
-                  </t-tag>
-                </p>
-              </template>
-            </t-list-item-meta>
+            <a :href="movieStore.movieUrl(movie.id)">
+              <t-list-item-meta :image="movie.image" :title="movie.fullTitle">
+                <template #description>
+                  <p>
+                    <t-tag theme="warning" style="font-size: small;">
+                      Release Date:  {{ movie.releaseState }}
+                    </t-tag>
+                  </p>
+                  <p>{{ movie.plot }}</p>
+                  <p>
+                    <t-tag style="font-size: small; margin-right: 6px;">
+                      <template #icon>
+                        <t-icon name="discount" />
+                      </template>
+                      {{ movie.genres }}
+                    </t-tag>
+                    <t-tag style="font-size: small; margin-right: 6px;">
+                      <template #icon>
+                        <t-icon name="time" />
+                      </template>
+                      {{ movie.runtimeStr }}
+                    </t-tag>
+                  </p>
+                </template>
+              </t-list-item-meta>
+            </a>
           </t-list-item>
         </template>
         <template v-else>
-          {{ comingSoonData.movies?.errorMessage }}
+          {{ comingSoonData.movies?.errorMessage }}.
         </template>
       </p>
     </t-tab-panel>
@@ -86,19 +91,21 @@
         <t-loading :loading="boxOfficeData.isLoading" fullscreen />
         <template v-if="boxOfficeData.movies && boxOfficeData.movies.items.length > 0">
           <t-list-item v-for="movie in boxOfficeData.movies?.items" :key="movie.id" class="list-item">
-            <t-list-item-meta :image="movie.image" :title="movie.title">
-              <template #description>
-                Rank  <t-tag theme="danger" style="margin-right: 6px;">
-                  {{ movie.rank }}
-                </t-tag>
-                <t-tag theme="primary">
-                  {{ movie.gross }}
-                </t-tag>
-                <t-tag theme="warning">
-                  {{ movie.weekend }}
-                </t-tag>
-              </template>
-            </t-list-item-meta>
+            <a :href="movieStore.movieUrl(movie.id)">
+              <t-list-item-meta :image="movie.image" :title="movie.title">
+                <template #description>
+                  Rank  <t-tag theme="danger" style="margin-right: 6px;">
+                    {{ movie.rank }}
+                  </t-tag>
+                  <t-tag theme="primary">
+                    {{ movie.gross }}
+                  </t-tag>
+                  <t-tag theme="warning">
+                    {{ movie.weekend }}
+                  </t-tag>
+                </template>
+              </t-list-item-meta>
+            </a>
           </t-list-item>
         </template>
         <template v-else>
