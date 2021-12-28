@@ -10,6 +10,8 @@ declare module 'vue' {
     Logo: typeof import('./src/components/Logo.vue')['default']
     MessageToggle: typeof import('./src/components/MessageToggle.vue')['default']
     MoonIcon: typeof import('./src/components/MoonIcon.vue')['default']
+    MovieList: typeof import('./src/components/MovieList.vue')['default']
+    MovieListItem: typeof import('./src/components/MovieListItem.vue')['default']
     SearchInput: typeof import('./src/components/SearchInput.vue')['default']
     SunIcon: typeof import('./src/components/SunIcon.vue')['default']
   }
