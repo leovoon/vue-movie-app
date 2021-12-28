@@ -1,24 +1,21 @@
 <template>
-  <t-button theme="default" size="large" variant="text" @click="toggleDark()">
-    <div v-if="isDark" class="toggle">
-      <t-icon name="star-filled" />
+  <t-button theme="default" style="vertical-align: middle;" size="large" variant="text" @click="toggleDark()">
+    <div v-if="isDark">
+      <span class="t-button__text">
+        <MoonIcon />
+      </span>
     </div>
     <div v-else>
-      <t-icon name="circle" class="toggle" />
+      <span class="t-button__text">
+        <SunIcon />
+      </span>
     </div>
   </t-button>
 </template>
 
 <script setup lang='ts'>
+import SunIcon from './SunIcon.vue'
+import MoonIcon from './MoonIcon.vue'
 import { isDark, toggleDark } from '~/composables'
 
 </script>
-
-<style scoped>
-.toggle {
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
-
-}
-</style>

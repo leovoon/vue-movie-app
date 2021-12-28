@@ -1,25 +1,11 @@
 import { defineStore } from 'pinia'
-import type MovieObject from '~/type/movie'
+import type { BoxOfficeMovies, MovieObject, SearchMovieResult } from '~/type/movie'
 import MovieService from '~/services/Movies'
-
-export interface Item {
-  id: string
-  rank: string
-  title: string
-  image: string
-  weekend: string
-  gross: string
-  weeks: string
-}
-
-export interface BoxOfficeMovies {
-  items: Item[]
-  errorMessage: string
-}
 
 export const useMovie = defineStore('movieStore', {
   state() {
     return {
+      searchParam: '',
       inTheatersData: {
         movies: undefined as MovieObject | undefined,
         isLoading: false,
@@ -32,6 +18,11 @@ export const useMovie = defineStore('movieStore', {
       },
       boxOfficeData: {
         movies: undefined as BoxOfficeMovies | undefined,
+        isLoading: false,
+        error: null as string | null,
+      },
+      searchByTitleData: {
+        movies: undefined as SearchMovieResult | undefined,
         isLoading: false,
         error: null as string | null,
       },
@@ -78,6 +69,21 @@ export const useMovie = defineStore('movieStore', {
       }
       this.boxOfficeData.isLoading = false
     },
+    setSearchParam(searchParam: string) {
+      this.searchParam = searchParam
+    },
+    async setSearchMovieResult() {
+      this.searchByTitleData.isLoading = true
+      this.searchByTitleData.error = null
+      try {
+        this.searchByTitleData.movies = await MovieService.getSearchMovie(this.searchParam)
+      }
+      catch (error: any) {
+        if (error)
+          this.searchByTitleData.error = error
+      }
+      this.searchByTitleData.isLoading = false
+    }
   },
 
 })

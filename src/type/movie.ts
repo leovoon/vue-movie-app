@@ -35,8 +35,36 @@ export interface Item {
   starList: StarList[]
 }
 
-export default interface MovieObject {
+export interface BoxOfficeItem {
+  id: string
+  rank: string
+  title: string
+  image: string
+  weekend: string
+  gross: string
+  weeks: string
+}
+
+export interface BoxOfficeMovies {
+  items: BoxOfficeItem[]
+  errorMessage: string
+}
+
+export interface MovieObject {
   items: Item[]
   errorMessage: string
 }
-  
+export interface Result {
+  id: string
+  resultType: string
+  image: string
+  title: string
+  description: string
+}
+
+export interface SearchMovieResult{
+  searchType: string
+  expression: string
+  results: Result[]
+  errorMessage: string
+}

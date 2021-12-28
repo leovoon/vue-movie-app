@@ -11,9 +11,26 @@ html {
 }
 
 html[theme-mode="dark"] {
-  background: #121212;
+  background: #242424;
 }
 
 a {
   text-decoration: none;
 }
+
+nav {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: nowrap;
+  align-items: center;
+  width: 100%;
+}
+
+.searchInputWrapper {
+  padding: 10px;
+}
+
+footer {
+  margin-top: 10vh;
+}
+

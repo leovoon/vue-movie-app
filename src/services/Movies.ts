@@ -1,5 +1,6 @@
 import axios from 'axios'
 
+// import.meta.env.VITE_IMDB_API_KEY
 const apiKey = import.meta.env.VITE_IMDB_API_KEY
 
 const apiClient = axios.create({
@@ -12,14 +13,21 @@ const apiClient = axios.create({
 })
 
 export default {
-  getInTheaters() {
-    return apiClient.get(`/inTheaters/${apiKey}`).then(response => response.data)
+  async getInTheaters() {
+    const response = await apiClient.get(`/inTheaters/${apiKey}`)
+    return response.data
   },
-  getComingSoon() {
-    return apiClient.get(`/ComingSoon/${apiKey}`).then(response => response.data)
+  async getComingSoon() {
+    const response = await apiClient.get(`/ComingSoon/${apiKey}`)
+    return response.data
   },
-  getBoxOffice() {
-    return apiClient.get(`/BoxOffice/${apiKey}`).then(response => response.data)
+  async getBoxOffice() {
+    const response = await apiClient.get(`/BoxOffice/${apiKey}`)
+    return response.data
+  },
+  async getSearchMovie(searchParam: string) {
+    const response = await apiClient.get(`/SearchMovie/${apiKey}/${searchParam}`)
+    return response.data
   },
 
 }
