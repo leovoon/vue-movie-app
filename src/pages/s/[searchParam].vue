@@ -23,11 +23,13 @@
       <li v-for="movie in searchByTitleData.movies?.results" :key="movie.id" class="list-item">
         <div class="poster-wrapper">
           <template v-if="searchByTitleData.movies?.results && searchByTitleData.movies?.results.length > 0">
-            <img class="poster" :src="movie.image" :alt="movie.title">
+            <img v-lazy="movie.image" class="poster" :alt="movie.title">
             <t-button variant="text" theme="default">
               <strong>
                 {{ movie.title }}
               </strong>
+            </t-button>
+            <t-button variant="text" theme="default">
               {{ movie.description }}
             </t-button>
             <a :href="movieStore.movieUrl(movie.id)">
@@ -46,7 +48,6 @@
 <script setup lang="ts">
 import { storeToRefs } from 'pinia'
 import { useMovie } from '../../store'
-
 const movieStore = useMovie()
 const { searchByTitleData } = storeToRefs(movieStore)
 const props = defineProps<{ searchParam: string }>()
@@ -88,7 +89,7 @@ li {
   box-shadow: rgb(0 0 0 / 15%) 0px 2px 4px;
 }
 .poster-wrapper a {
-  margin-top: .5rem;
+  margin-top: 1rem;
 }
 
 .poster{
@@ -96,5 +97,12 @@ li {
   height: 100%;
   object-fit: cover;
   border-radius: inherit;
+}
+
+img[lazy=loading]{
+  background-image: url("../loading.svg");
+  background-repeat: no-repeat;
+  background-size: 100%;
+
 }
 </style>

@@ -1,10 +1,6 @@
 <template>
   <SearchInput @submit-search="go" />
 
-  <!-- <form @submit.prevent="go">
-    <t-input v-model="searchParam" clearable placeholder="Search movie" @clear="SearchOnClear" />
-  </form> -->
-
   <t-tabs :value="tab" theme="normal" @change="handlerChange">
     <t-tab-panel value="first">
       <template #label>
