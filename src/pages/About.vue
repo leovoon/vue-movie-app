@@ -7,10 +7,6 @@
 </template>
 
 <style>
-.about {
-    width: 100%;
-    height: 100%;
-}
 
 .about__text {
     padding: 4rem;

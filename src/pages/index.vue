@@ -6,8 +6,8 @@
       <template #label>
         <t-icon name="precise-monitor" class="tabs-icon-margin" /> In theaters
       </template>
-      <p style="padding: 12px">
-        <t-loading :loading="inTheatersData.isLoading" fullscreen />
+      <p style="padding: 12px;">
+        <t-loading :loading="inTheatersData.isLoading" />
         <template v-if="inTheatersData.movies && inTheatersData.movies.items.length > 0">
           <t-list-item v-for="movie in inTheatersData.movies?.items" :key="movie.id" class="list-item">
             <a :href="movieStore.movieUrl(movie.id)">
@@ -21,11 +21,11 @@
                   </p>
                   <p>{{ movie.plot }}</p>
                   <p>
-                    <t-tag style="font-size: small; margin-right: 6px;">
+                    <t-tag v-for="(genre, idx) in movie.genres.split(',')" :key="idx" style="font-size: small; margin-right: 6px;">
                       <template #icon>
                         <t-icon name="discount" />
+                        {{ genre }}
                       </template>
-                      {{ movie.genres }}
                     </t-tag>
                     <t-tag style="font-size: small; margin-right: 6px;">
                       <template #icon>
@@ -40,7 +40,9 @@
           </t-list-item>
         </template>
         <template v-else>
-          {{ inTheatersData.movies?.errorMessage }}
+          <t-button variant="text" theme="default">
+            {{ inTheatersData.movies?.errorMessage }}
+          </t-button>
         </template>
       </p>
     </t-tab-panel>
@@ -49,7 +51,7 @@
         <t-icon name="calendar" class="tabs-icon-margin" /> Coming Soon
       </template>
       <p style="padding: 12px">
-        <t-loading :loading="comingSoonData.isLoading" fullscreen />
+        <t-loading :loading="comingSoonData.isLoading" />
         <template v-if="comingSoonData.movies && comingSoonData.movies.items.length > 0">
           <t-list-item v-for="movie in comingSoonData.movies?.items" :key="movie.id" class="list-item">
             <a :href="movieStore.movieUrl(movie.id)">
@@ -62,11 +64,11 @@
                   </p>
                   <p>{{ movie.plot }}</p>
                   <p>
-                    <t-tag style="font-size: small; margin-right: 6px;">
+                    <t-tag v-for="(genre, idx) in movie.genres.split(',')" :key="idx" style="font-size: small; margin-right: 6px;">
                       <template #icon>
                         <t-icon name="discount" />
+                        {{ genre }}
                       </template>
-                      {{ movie.genres }}
                     </t-tag>
                     <t-tag style="font-size: small; margin-right: 6px;">
                       <template #icon>
@@ -81,7 +83,9 @@
           </t-list-item>
         </template>
         <template v-else>
-          {{ comingSoonData.movies?.errorMessage }}.
+          <t-button variant="text" theme="default">
+            {{ comingSoonData.movies?.errorMessage }}.
+          </t-button>
         </template>
       </p>
     </t-tab-panel>
@@ -90,7 +94,7 @@
         <t-icon name="star" class="tabs-icon-margin" /> Box Office
       </template>
       <p style="padding: 12px">
-        <t-loading :loading="boxOfficeData.isLoading" fullscreen />
+        <t-loading :loading="boxOfficeData.isLoading" />
         <template v-if="boxOfficeData.movies && boxOfficeData.movies.items.length > 0">
           <t-list-item v-for="movie in boxOfficeData.movies?.items" :key="movie.id" class="list-item">
             <a :href="movieStore.movieUrl(movie.id)">
@@ -111,7 +115,9 @@
           </t-list-item>
         </template>
         <template v-else>
-          {{ boxOfficeData.movies?.errorMessage }}
+          <t-button variant="text" theme="default">
+            {{ boxOfficeData.movies?.errorMessage }}
+          </t-button>
         </template>
       </p>
     </t-tab-panel>

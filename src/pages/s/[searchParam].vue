@@ -11,7 +11,7 @@
       </div>
     </t-breadcrumbItem>
     <t-breadcrumbItem>
-      you searched
+      You searched
     </t-breadcrumbItem>
     <t-breadcrumbItem :max-width="'160'">
       {{ prevSearch }}
@@ -20,9 +20,9 @@
   <ul>
     <t-loading v-if="searchByTitleData.isLoading" :loading="searchByTitleData.isLoading" text="Loading..." size="medium" />
     <template v-if="!searchByTitleData.isLoading">
-      <li v-for="movie in searchByTitleData.movies?.results" :key="movie.id" class="list-item">
-        <div class="poster-wrapper">
-          <template v-if="searchByTitleData.movies?.results && searchByTitleData.movies?.results.length > 0">
+      <template v-if="searchByTitleData.movies?.results && searchByTitleData.movies?.results.length > 0">
+        <li v-for="movie in searchByTitleData.movies?.results" :key="movie.id" class="list-item">
+          <div class="poster-wrapper">
             <img v-lazy="movie.image" class="poster" :alt="movie.title">
             <t-button variant="text" theme="default">
               <strong>
@@ -35,12 +35,14 @@
             <a :href="movieStore.movieUrl(movie.id)">
               <t-button variant="dashed" theme="success"> <t-icon name="link" /> IMDB </t-button>
             </a>
-          </template>
-          <template v-else>
-            {{ searchByTitleData.movies?.errorMessage }}
-          </template>
-        </div>
-      </li>
+          </div>
+        </li>
+      </template>
+      <template v-else>
+        <t-button theme="default" variant="text">
+          {{ searchByTitleData.movies?.errorMessage }}
+        </t-button>
+      </template>
     </template>
   </ul>
 </template>

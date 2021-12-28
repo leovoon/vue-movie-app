@@ -3,6 +3,7 @@
     <t-affix ref="affix" :offset-bottom="20">
       <t-input
         v-model="text"
+        size="medium"
         placeholder="Search movie"
         clearable
         @clear="() => text = ''"
