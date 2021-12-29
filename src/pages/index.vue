@@ -6,15 +6,15 @@
       <template #label>
         <t-icon name="precise-monitor" class="tabs-icon-margin" /> {{ label }}
       </template>
-      <MovieList :movies="moviesByCategory" :label="label">
+      <MovieList :movies-by-category="moviesByCategory" :label="label">
         <template #loading>
           <t-loading :loading="moviesByCategory.isLoading" />
         </template>
-        <template #list>
-          <MovieListItem :movie="moviesByCategory" />
+        <template #list="slotProps">
+          <MovieListItem :movie="slotProps.movie?.items" />
         </template>
         <template #error>
-          <t-button variant="text" theme="default">
+          <t-button theme="default" variant="text">
             {{ moviesByCategory.movies?.errorMessage }}
           </t-button>
         </template>

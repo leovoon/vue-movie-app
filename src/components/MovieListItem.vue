@@ -1,5 +1,5 @@
 <template>
-  <t-list-item v-for="item in movie" :key="item.id" class="list-item">
+  <t-list-item v-for=" item in movie" :key="item.id">
     <a :href="movieStore.movieUrl(item.id)">
 
       <t-list-item-meta :image="item.image" :title="item.fullTitle" :description="item.plot">

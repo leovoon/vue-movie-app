@@ -1,8 +1,8 @@
 <template>
   <div style="padding: 12px">
     <slot name="loading" />
-    <template v-if="movies.movies && movies.movies.items.length > 0">
-      <slot name="list" />
+    <template v-if="moviesByCategory.movies && moviesByCategory.movies.items.length > 0">
+      <slot name="list" :movie="moviesByCategory.movies" />
     </template>
     <template v-else>
       <slot name="error" />
@@ -12,13 +12,7 @@
 
 <script setup lang='ts'>
 defineProps({
-  movieStore: {
-    type: Object,
-    default: () => ({
-      movieUrl: (id: string) => `/movie/${id}`,
-    }),
-  },
-  movies: {
+  moviesByCategory: {
     type: Object,
     default: () => ({
       isLoading: true,
