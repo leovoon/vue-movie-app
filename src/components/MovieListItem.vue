@@ -1,8 +1,7 @@
 <template>
   <t-list-item v-for=" item in movie" :key="item.id">
     <a :href="movieStore.movieUrl(item.id)">
-
-      <t-list-item-meta :image="item.image" :title="item.fullTitle" :description="item.plot">
+      <t-list-item-meta v-if="!item.rank" :image="item.image" :title="item.fullTitle" :description="item.plot">
         <template #description>
           <p>
             <t-tag theme="primary" style="font-size: small;">
@@ -24,6 +23,19 @@
               {{ item.runtimeStr }}
             </t-tag>
           </p>
+        </template>
+      </t-list-item-meta>
+      <t-list-item-meta v-else :image="item.image" :title="item.title">
+        <template #description>
+          Rank  <t-tag theme="danger" style="margin-right: 6px;">
+            {{ item.rank }}
+          </t-tag>
+          <t-tag theme="primary">
+            {{ item.gross }}
+          </t-tag>
+          <t-tag theme="warning">
+            {{ item.weekend }}
+          </t-tag>
         </template>
       </t-list-item-meta>
     </a>

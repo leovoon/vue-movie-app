@@ -20,22 +20,6 @@ defineProps({
       errorMessage: null,
     }),
   },
-  comingSoonData: {
-    type: Object,
-    default: () => ({
-      isLoading: true,
-      movies: null,
-      errorMessage: null,
-    }),
-  },
-  boxOfficeData: {
-    type: Object,
-    default: () => ({
-      isLoading: true,
-      movies: null,
-      errorMessage: null,
-    }),
-  },
 })
 </script>
 
