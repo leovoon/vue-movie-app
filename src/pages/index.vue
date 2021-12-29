@@ -6,19 +6,18 @@
       <template #label>
         <t-icon name="precise-monitor" class="tabs-icon-margin" /> {{ label }}
       </template>
-      <MovieList :movies-by-category="moviesByCategory" :label="label">
-        <template #loading>
-          <t-loading :loading="moviesByCategory.isLoading" />
-        </template>
-        <template #list="slotProps">
-          <MovieListItem :movie="slotProps.movie?.items" />
-        </template>
-        <template #error>
-          <t-button theme="default" variant="text">
-            {{ moviesByCategory.movies?.errorMessage }}
-          </t-button>
-        </template>
-      </MovieList>
+      <t-loading :loading="moviesByCategory.isLoading" show-overlay>
+        <MovieList :movies-by-category="moviesByCategory" :label="label">
+          <template #list="slotProps">
+            <MovieListItem :movie="slotProps.movie?.items" />
+          </template>
+          <template #error>
+            <t-button theme="default" variant="text">
+              {{ moviesByCategory.movies?.errorMessage }}
+            </t-button>
+          </template>
+        </MovieList>
+      </t-loading>
     </t-tab-panel>
   </t-tabs>
 </template>

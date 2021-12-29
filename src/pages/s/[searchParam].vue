@@ -65,7 +65,7 @@ watchEffect(() => {
 })
 </script>
 
-<style scoped>
+<style>
 ul {
   width: 100%;
   padding: 10px;
@@ -101,10 +101,4 @@ li {
   border-radius: inherit;
 }
 
-img[lazy=loading]{
-  background-image: url("../loading.svg");
-  background-repeat: no-repeat;
-  background-size: 100%;
-
-}
 </style>

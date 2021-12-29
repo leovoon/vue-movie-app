@@ -26,6 +26,10 @@
         </template>
       </t-list-item-meta>
       <t-list-item-meta v-else :image="item.image" :title="item.title">
+        <template #image>
+          <img v-lazy="item.image" class="poster" :alt="item.title">
+
+        </template>
         <template #description>
           Rank  <t-tag theme="danger" style="margin-right: 6px;">
             {{ item.rank }}

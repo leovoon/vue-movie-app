@@ -1,6 +1,8 @@
 <template>
   <div style="padding: 12px">
-    <slot name="loading" />
+    <!-- <div class="loading-wrapper">
+      <slot name="loading" />
+    </div> -->
     <template v-if="moviesByCategory.movies && moviesByCategory.movies.items.length > 0">
       <slot name="list" :movie="moviesByCategory.movies" />
     </template>
@@ -24,5 +26,9 @@ defineProps({
 </script>
 
 <style scoped>
-
+.loading-wrapper{
+  width: 100%;
+  display: grid;
+  justify-content: center;
+}
 </style>
