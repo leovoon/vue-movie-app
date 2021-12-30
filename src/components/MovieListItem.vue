@@ -20,7 +20,7 @@
               <template #icon>
                 <t-icon name="time" />
               </template>
-              {{ item.runtimeStr }}
+              {{ !item.runtimeStr ? 'unknown' : item.runtimeStr }}
             </t-tag>
           </p>
         </template>

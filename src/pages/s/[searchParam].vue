@@ -14,7 +14,7 @@
       You searched
     </t-breadcrumbItem>
     <t-breadcrumbItem :max-width="'160'">
-      {{ prevSearch }}
+      {{ props.searchParam }}
     </t-breadcrumbItem>
   </t-breadcrumb>
   <ul>
@@ -40,7 +40,7 @@
       </template>
       <template v-else>
         <t-button theme="default" variant="text">
-          {{ searchByTitleData.movies?.errorMessage }}
+          {{ !searchByTitleData.movies?.errorMessage ? 'No movie found' : searchByTitleData.movies?.errorMessage }}
         </t-button>
       </template>
     </template>
@@ -53,16 +53,14 @@ import { useMovie } from '../../store'
 const movieStore = useMovie()
 const { searchByTitleData } = storeToRefs(movieStore)
 const props = defineProps<{ searchParam: string }>()
-const prevSearch = computed(() => props.searchParam)
 const router = useRouter()
-const go = (payload: string) => {
-  if (payload)
-    router.push(`/s/${encodeURIComponent(payload)}`)
+const go = (searchParam: string) => {
+  if (searchParam !== props.searchParam) {
+    router.push(`/s/${encodeURIComponent(searchParam)}`)
+    movieStore.setSearchParam(searchParam)
+    movieStore.setSearchMovieResult()
+  }
 }
-watchEffect(() => {
-  movieStore.setSearchParam(props.searchParam)
-  movieStore.setSearchMovieResult()
-})
 </script>
 
 <style>
