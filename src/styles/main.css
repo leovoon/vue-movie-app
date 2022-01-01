@@ -24,6 +24,7 @@ nav {
   flex-wrap: nowrap;
   align-items: center;
   width: 100%;
+  padding-top: .5rem;
 }
 
 .searchInputWrapper {
@@ -33,11 +34,4 @@ nav {
 
 footer {
   margin-top: 10vh;
-}
-
-img[lazy=loading]{
-  background-image: url("../loading.svg");
-  background-repeat: no-repeat;
-  background-size: 100%;
-
 }

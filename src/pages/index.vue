@@ -4,9 +4,9 @@
   <t-tabs :value="tab" theme="normal" @change="handlerTabChange">
     <t-tab-panel v-for="({value, label, movies: moviesByCategory}, index) in tabs" :key="index" :value="value">
       <template #label>
-        <t-icon name="precise-monitor" class="tabs-icon-margin" /> {{ label }}
+        <t-icon name="precise-monitor" loading="true" class="tabs-icon-margin" /> {{ label }}
       </template>
-      <t-loading :loading="moviesByCategory.isLoading" show-overlay>
+      <t-loading :loading="moviesByCategory.isLoading">
         <MovieList :movies-by-category="moviesByCategory" :label="label">
           <template #list="slotProps">
             <MovieListItem :movie="slotProps.movie?.items" />
@@ -48,8 +48,14 @@ onMounted(() => {
 
 const router = useRouter()
 const go = (payload: string) => {
-  if (payload)
+  if (payload === movieStore.searchParam) {
     router.push(`/s/${encodeURIComponent(payload)}`)
+  }
+  else {
+    router.push(`/s/${encodeURIComponent(payload)}`)
+    movieStore.setSearchParam(payload)
+    movieStore.setSearchMovieResult()
+  }
 }
 
 </script>

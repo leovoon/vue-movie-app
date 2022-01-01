@@ -1,6 +1,7 @@
 
 <template>
   <SearchInput @submit-search="go" />
+  {{ colorByMode }}
   <t-breadcrumb theme="light" :max-item-width="'150'">
     <t-breadcrumbItem to="/" style="display: flex; align-items: center;">
       <div style="display: flex; align-items: center;">
@@ -50,6 +51,7 @@
 <script setup lang="ts">
 import { storeToRefs } from 'pinia'
 import { useMovie } from '../../store'
+import { isDark } from '~/composables'
 const movieStore = useMovie()
 const { searchByTitleData } = storeToRefs(movieStore)
 const props = defineProps<{ searchParam: string }>()
@@ -61,6 +63,11 @@ const go = (searchParam: string) => {
     movieStore.setSearchMovieResult()
   }
 }
+watchEffect(() => {
+  movieStore.setSearchParam(props.searchParam)
+  movieStore.setSearchMovieResult()
+})
+const colorByMode = computed(() => isDark.value ? '#2C3E50' : '#75b5f4a6')
 </script>
 
 <style>
@@ -97,6 +104,15 @@ li {
   height: 100%;
   object-fit: cover;
   border-radius: inherit;
+}
+
+img[lazy=loading]{
+  background-image: url("../loading.svg");
+  background-repeat: no-repeat;
+  background-size: 100%;
+  background-position: center;
+  background-color: v-bind(colorByMode);
+
 }
 
 </style>
