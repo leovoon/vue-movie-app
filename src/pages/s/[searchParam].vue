@@ -1,7 +1,6 @@
 
 <template>
   <SearchInput @submit-search="go" />
-  {{ colorByMode }}
   <t-breadcrumb theme="light" :max-item-width="'150'">
     <t-breadcrumbItem to="/" style="display: flex; align-items: center;">
       <div style="display: flex; align-items: center;">
@@ -25,11 +24,9 @@
         <li v-for="movie in searchByTitleData.movies?.results" :key="movie.id" class="list-item">
           <div class="poster-wrapper">
             <img v-lazy="movie.image" class="poster" :alt="movie.title">
-            <t-button variant="text" theme="default">
-              <strong>
-                {{ movie.title }}
-              </strong>
-            </t-button>
+            <h3 class="text-center " :style="{color: isDark ? 'white' : '#202020'}">
+              {{ movie.title }}
+            </h3>
             <t-button variant="text" theme="default">
               {{ movie.description }}
             </t-button>
@@ -78,7 +75,7 @@ ul {
   justify-items: center;
   justify-content: center;
   grid-gap: 20px;
-  grid-template-columns: repeat(auto-fit, 320px);
+  grid-template-columns: repeat(auto-fit, 180px);
 }
 li {
   list-style: none;
@@ -88,8 +85,8 @@ li {
 .poster-wrapper{
   display: grid;
   justify-items: center;
-  width: 80vw;
-  max-width: 320px;
+  width: 100%;
+  max-width: 180px;
   height: 100%;
   border-radius: 15px;
   padding: 10px;
@@ -102,6 +99,7 @@ li {
 .poster{
   width: 100%;
   height: 100%;
+  max-width: 100%;
   object-fit: cover;
   border-radius: inherit;
 }
@@ -109,7 +107,9 @@ li {
 img[lazy=loading]{
   background-image: url("../loading.svg");
   background-repeat: no-repeat;
-  background-size: 100%;
+  width: 180px;
+  height: 227px;
+  background-size: 30%;
   background-position: center;
   background-color: v-bind(colorByMode);
 

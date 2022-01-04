@@ -1,16 +1,14 @@
 <template>
   <form class="searchInputWrapper" @submit.prevent="$emit('submitSearch',text)">
-    <t-affix ref="affix" :offset-bottom="20">
-      <t-input
-        v-model="text"
-        theme="default"
-        size="medium"
-        placeholder="Search movie"
-        clearable
-        @clear="() => text = ''"
-        @enter="$emit('submitSearch', text)"
-      />
-    </t-affix>
+    <t-input
+      v-model="text"
+      theme="default"
+      size="medium"
+      placeholder="Search movie"
+      clearable
+      @clear="() => text = ''"
+      @enter="$emit('submitSearch', text)"
+    />
   </form>
 </template>
 
