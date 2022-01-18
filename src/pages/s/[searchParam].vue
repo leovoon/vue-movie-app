@@ -27,9 +27,9 @@
             <h3 class="text-center " :style="{color: isDark ? 'white' : '#202020'}">
               {{ movie.title }}
             </h3>
-            <t-button variant="text" theme="default">
+            <p class="text-center " :style="{color: isDark ? 'white' : '#202020'}">
               {{ movie.description }}
-            </t-button>
+            </p>
             <a :href="movieStore.movieUrl(movie.id)">
               <t-button variant="dashed" theme="success"> <t-icon name="link" /> IMDB </t-button>
             </a>
